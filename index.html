@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YemekSepeti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loginScreen">
+        <div class="login-box">
+            <h1 class="brand-logo">GİRİŞ</h1>
+            <div class="auth-tabs">
+                <button id="tabCustomer" class="active" onclick="app.switchTab('customer')">Müşteri</button>
+                <button id="tabRes" onclick="app.switchTab('res')">Restoran</button>
+                <button id="tabAdmin" onclick="app.switchTab('admin')">Admin</button>
+            </div>
+
+            <div id="authForm">
+                <h2 id="authTitle">Müşteri Girişi</h2>
+                <div id="resNameField" class="hidden">
+                    <input type="text" id="authResName" placeholder="Restoran Adı" class="form-input">
+                </div>
+                <input type="text" id="authUser" placeholder="Kullanıcı Adı" class="form-input">
+                <input type="password" id="authPass" placeholder="Şifre" class="form-input">
+                
+                <div id="loginActions">
+                    <button class="btn-action" onclick="app.handleAuth()">GİRİŞ YAP</button>
+                    <p class="auth-switch" id="regSwitchText">Hesabın yok mu? <a href="#" onclick="app.toggleRegister(true)">Kayıt Ol</a></p>
+                </div>
+
+                <div id="registerActions" class="hidden">
+                    <button class="btn-action" onclick="app.handleAuth(true)">KAYIT OL</button>
+                    <p class="auth-switch">Zaten üye misin? <a href="#" onclick="app.toggleRegister(false)">Giriş Yap</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="appPanel" class="hidden">
+        <header>
+            <div class="header-logo" onclick="app.headerLogoAction()">YEMEK<span class="accent-text">SEPETİ</span></div>
+            <div id="userWelcome"></div>
+            <button onclick="location.reload()" class="btn-logout">Çıkış</button>
+        </header>
+
+        <div id="restaurantSelection" class="app-view hidden">
+            <h2 class="section-title">Restoranlar</h2>
+            <div id="resList" class="res-grid"></div>
+        </div>
+
+        <div id="resAdminPanel" class="app-view hidden">
+            <h2 class="section-title">Restoran Yönetim Paneli</h2>
+            <div class="menu-manager">
+                <div class="add-product-box">
+                    <h3 id="formTitle">Yeni Ürün Ekle</h3>
+                    <input type="text" id="newPName" placeholder="Ürün Adı">
+                    <input type="number" id="newPPrice" placeholder="Fiyat (TL)">
+                    <select id="newPType">
+                        <option value="food">🍔 Yiyecek</option>
+                        <option value="drink">🥤 İçecek</option>
+                    </select>
+                    <div class="form-btns" style="display:flex; gap:10px; width:100%;">
+                        <button id="btnSubmitProduct" class="btn-action" onclick="app.saveProduct()">EKLE</button>
+                        <button id="btnCancelEdit" class="btn-cancel hidden" onclick="app.resetProductForm()" style="margin:0; background:#475569; color:white; border-radius:12px;">Vazgeç</button>
+                    </div>
+                </div>
+                <div id="resProductList" class="res-manage-grid"></div>
+                <div id="resOrderList" class="res-orders-section"></div>
+            </div>
+        </div>
+
+        <div id="adminPanel" class="app-view hidden">
+            <h2 class="section-title">Sistem Yönetimi (Restoran Listesi)</h2>
+            <div id="adminResList" class="admin-res-list" style="padding: 0 5%;"></div>
+        </div>
+
+        <div id="menuSection" class="hidden">
+            <div id="resBanner" class="restaurant-banner">
+                <div class="banner-overlay">
+                    <button class="back-btn-overlay" onclick="app.showRestaurants()">← Geri</button>
+                    <h1 id="activeResName"></h1>
+                </div>
+            </div>
+            <div class="menu-layout">
+                <main id="productGrid" class="products-grid"></main>
+                <aside class="cart-box">
+                    <h3>Sepetim 🛒</h3>
+                    <div id="cartItems"></div>
+                    <div class="cart-footer">
+                        <span>Toplam: <span id="cartTotal">0.00</span> TL</span>
+                    </div>
+                    <button class="btn-action" onclick="app.openOrderModal()">SİPARİŞ VER</button>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <div id="orderModal" class="modal hidden">
+        <div class="modal-content">
+            <h3 class="modal-title">Teslimat Bilgileri</h3>
+            <textarea id="orderAddress" placeholder="Mahalle, sokak, no..."></textarea>
+            <select id="paymentMethod">
+                <option value="cash">🏠 Kapıda Ödeme</option>
+                <option value="online">💳 Online Kart</option>
+            </select>
+            <button class="btn-action" onclick="app.confirmOrder()">DEVAM ET</button>
+            <button onclick="app.closeModal()" class="btn-cancel">Vazgeç</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

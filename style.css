@@ -1,0 +1,138 @@
+:root {
+    --accent: #ffb800;
+    --bg-dark: #0f172a;
+    --panel-bg: rgba(30, 41, 59, 0.8);
+    --text-main: #f1f5f9;
+    --text-dim: #94a3b8;
+    --danger: #f43f5e;
+}
+
+* { box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: 0.3s; }
+body { margin: 0; background: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
+.hidden { display: none !important; }
+
+/* --- GİRİŞ VE KAYIT EKRANI --- */
+#loginScreen { position: fixed; inset: 0; background: var(--bg-dark); display: flex; align-items: center; justify-content: center; z-index: 10000; }
+.login-box { background: var(--panel-bg); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); width: 90%; max-width: 400px; text-align: center; }
+
+.auth-tabs { display: flex; background: rgba(0,0,0,0.2); border-radius: 12px; margin-bottom: 25px; padding: 5px; }
+.auth-tabs button { flex: 1; background: none; border: none; color: var(--text-dim); padding: 10px; cursor: pointer; border-radius: 8px; font-weight: 600; }
+.auth-tabs button.active { background: var(--accent); color: var(--bg-dark); }
+
+.auth-switch { margin-top: 15px; font-size: 13px; color: var(--text-dim); }
+.auth-switch a { color: var(--accent); text-decoration: none; font-weight: 700; }
+
+/* --- HEADER --- */
+header { background: rgba(15, 23, 42, 0.95); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.header-logo { font-weight: 800; font-size: 22px; cursor: pointer; }
+.accent-text { color: var(--accent); }
+
+/* --- LAYOUT VE KARTLAR --- */
+.menu-layout { display: grid; grid-template-columns: 200px 1fr 320px; gap: 20px; padding: 20px 5%; }
+.res-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; padding: 20px 5%; }
+.res-card { background: var(--panel-bg); padding: 25px; border-radius: 20px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.05); }
+.res-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+
+.p-card { background: var(--panel-bg); padding: 15px; border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
+.p-price { color: var(--accent); font-weight: 800; margin: 10px 0; }
+
+/* --- SEPET VE QTY --- */
+.cart-box { background: var(--panel-bg); padding: 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
+.cart-item-ui { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 14px; }
+.qty-controls { display: flex; align-items: center; gap: 8px; }
+.qty-controls button { background: var(--accent); border: none; width: 24px; height: 24px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+
+/* --- BANKA KARTI --- */
+.card-display { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); height: 170px; border-radius: 15px; padding: 20px; margin-bottom: 20px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(255,255,255,0.1); }
+.chip { width: 40px; height: 30px; background: rgba(255,184,0,0.3); border-radius: 5px; }
+#displayCardNum { font-size: 18px; letter-spacing: 2px; color: white; }
+.card-bottom { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-dim); }
+
+/* --- MODALLAR VE INPUTLAR --- */
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 2000; }
+.modal-content { background: #1e293b; padding: 30px; border-radius: 25px; width: 100%; max-width: 400px; }
+.form-input, textarea, select, .payment-form input { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; color: white; border-radius: 10px; margin-bottom: 15px; outline: none; }
+
+.btn-action { width: 100%; background: var(--accent); color: var(--bg-dark); border: none; padding: 14px; border-radius: 12px; font-weight: 800; cursor: pointer; }
+.btn-cancel { background: none; border: none; color: var(--text-dim); width: 100%; margin-top: 10px; cursor: pointer; }
+
+/* --- BANNER --- */
+.restaurant-banner { height: 180px; background-size: cover; background-position: center; border-radius: 20px; position: relative; margin: 0 5%; }
+.banner-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); border-radius: 20px; display: flex; align-items: center; justify-content: center; }
+.res-orders-section {
+    margin-top: 30px;
+    border-top: 2px solid #334155;
+    padding-top: 20px;
+}
+
+.order-card {
+    background: #1e293b;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 5px solid #ffb800; /* Hazırlanıyor: Sarı */
+}
+
+.order-card.status-yolda { border-left-color: #3b82f6; } /* Mavi */
+.order-card.status-teslim-edildi { border-left-color: #10b981; opacity: 0.7; } /* Yeşil */
+
+.order-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.status-badge { background: #334155; padding: 2px 8px; border-radius: 5px; font-size: 12px; }
+
+.order-actions { display: flex; gap: 10px; margin-top: 10px; }
+.btn-on-way { background: #3b82f6; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+.btn-delivered { background: #10b981; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+:root {
+    --accent: #ffb800;
+    --bg-dark: #0f172a;
+    --panel-bg: rgba(30, 41, 59, 0.8);
+    --text-main: #f1f5f9;
+    --text-dim: #94a3b8;
+    --danger: #f43f5e;
+    --success: #10b981;
+    --info: #3b82f6;
+}
+
+* { box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: 0.3s; }
+body { margin: 0; background: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
+.hidden { display: none !important; }
+
+/* HEADER */
+header { background: rgba(15, 23, 42, 0.95); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 0; z-index: 100; }
+.header-logo { font-weight: 800; font-size: 22px; cursor: pointer; }
+.accent-text { color: var(--accent); }
+.btn-logout { background: var(--danger); border: none; color: white; padding: 8px 15px; border-radius: 8px; cursor: pointer; }
+
+/* KARTLAR VE GRID */
+.res-grid, .res-manage-grid, .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; padding: 20px 5%; }
+.res-card, .p-card { background: var(--panel-bg); padding: 25px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
+.p-price { color: var(--accent); font-weight: 800; margin: 10px 0; font-size: 18px; }
+
+/* ÜRÜN İŞLEMLERİ */
+.p-actions { display: flex; gap: 5px; margin-top: 10px; }
+.btn-edit { background: var(--info); color: white; border: none; padding: 8px; border-radius: 8px; cursor: pointer; flex: 1; font-size: 12px; }
+.btn-danger { background: var(--danger); color: white; border: none; padding: 8px; border-radius: 8px; cursor: pointer; flex: 1; font-size: 12px; }
+
+/* GİRİŞ EKRANI */
+#loginScreen { position: fixed; inset: 0; background: var(--bg-dark); display: flex; align-items: center; justify-content: center; z-index: 10000; }
+.login-box { background: var(--panel-bg); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); width: 90%; max-width: 400px; text-align: center; }
+.auth-tabs { display: flex; background: rgba(0,0,0,0.2); border-radius: 12px; margin-bottom: 25px; padding: 5px; }
+.auth-tabs button { flex: 1; background: none; border: none; color: var(--text-dim); padding: 10px; cursor: pointer; border-radius: 8px; font-weight: 600; }
+.auth-tabs button.active { background: var(--accent); color: var(--bg-dark); }
+
+/* DİĞER */
+.add-product-box { background: var(--panel-bg); margin: 0 5%; padding: 20px; border-radius: 20px; border: 1px solid var(--accent); display: flex; gap: 10px; flex-wrap: wrap; }
+.form-input, textarea, select { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; color: white; border-radius: 10px; margin-bottom: 10px; outline: none; }
+.btn-action { background: var(--accent); color: var(--bg-dark); border: none; padding: 12px; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; }
+.btn-delivered { background: var(--success); color: white; border: none; padding: 8px; border-radius: 8px; cursor: pointer; flex: 1; }
+.btn-on-way { background: var(--info); color: white; border: none; padding: 8px; border-radius: 8px; cursor: pointer; flex: 1; }
+.btn-cancel { background: #475569; color: white; border: none; padding: 8px; border-radius: 8px; cursor: pointer; flex: 1; }
+
+.menu-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; padding: 20px 5%; }
+.cart-box { background: var(--panel-bg); padding: 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); height: fit-content; position: sticky; top: 100px; }
+.cart-footer { margin-top: 20px; font-weight: bold; font-size: 18px; border-top: 1px solid var(--accent); padding-top: 10px; margin-bottom: 10px; }
+
+.res-orders-section { padding: 20px 5%; }
+.order-card { background: #1e293b; border-radius: 15px; padding: 15px; margin-bottom: 15px; border-left: 5px solid var(--accent); }
+.restaurant-banner { height: 200px; background-size: cover; background-position: center; border-radius: 20px; position: relative; margin: 20px 5%; }
+.banner-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
